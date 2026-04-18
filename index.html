@@ -245,14 +245,6 @@
       <input type="number" id="interval" value="8" min="2" max="120">
     </div>
 
-    <div class="field">
-      <label>Photo source</label>
-      <select id="photo-source">
-        <option value="all">All photos (including private)</option>
-        <option value="public">Public photos only</option>
-      </select>
-    </div>
-
     <div class="btn-row">
       <button class="btn-primary" onclick="saveSettings()">Save &amp; Start</button>
       <button class="btn-secondary" onclick="closeSettings()">Cancel</button>
@@ -345,13 +337,8 @@ async function fetchPhotos() {
       per_page: perPage,
       page: 1,
       extras: 'url_l,url_o,url_h,title',
-      privacy_filter: cfg.photoSource === 'public' ? '1' : '1,2,3,4,5'
+      privacy_filter: '3'
     };
-
-    // privacy_filter as a comma list isn't valid — we omit it to get all photos
-    if (cfg.photoSource !== 'public') {
-      delete extraParams.privacy_filter;
-    }
 
     const url = await signedFlickrUrl('flickr.people.getPhotos', extraParams);
     const res = await fetch(url);
@@ -455,7 +442,6 @@ function openSettings() {
   document.getElementById('oauth-token-secret').value = c.oauthTokenSecret || '';
   document.getElementById('user-nsid').value = c.userNsid || '';
   document.getElementById('interval').value = c.interval || 8;
-  document.getElementById('photo-source').value = c.photoSource || 'all';
 }
 
 function closeSettings() {
@@ -470,7 +456,6 @@ function saveSettings() {
     oauthTokenSecret: document.getElementById('oauth-token-secret').value.trim(),
     userNsid: document.getElementById('user-nsid').value.trim(),
     interval: parseInt(document.getElementById('interval').value, 10) || 8,
-    photoSource: document.getElementById('photo-source').value
   };
 
   if (!cfg.apiKey || !cfg.apiSecret || !cfg.oauthToken || !cfg.oauthTokenSecret || !cfg.userNsid) {
