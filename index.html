@@ -15,13 +15,13 @@
     overflow: hidden;
   }
 
+  /* ── Slideshow ── */
   #slideshow {
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
   }
 
   #photo {
@@ -35,9 +35,7 @@
 
   #info {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     padding: 12px 20px;
     background: linear-gradient(transparent, rgba(0,0,0,0.7));
     font-size: 14px;
@@ -48,13 +46,12 @@
     pointer-events: none;
   }
 
-  #photo-title { font-size: 16px; color: #fff; max-width: 70%; }
+  #photo-title  { font-size: 16px; color: #fff; max-width: 70%; }
   #photo-counter { font-size: 13px; color: #aaa; }
 
   #controls {
     position: fixed;
-    top: 12px;
-    right: 12px;
+    top: 12px; right: 12px;
     display: flex;
     gap: 8px;
   }
@@ -69,77 +66,12 @@
     font-size: 14px;
     backdrop-filter: blur(4px);
   }
-
-  button:hover { background: rgba(255,255,255,0.25); }
+  button:hover  { background: rgba(255,255,255,0.25); }
   button.active { background: rgba(255,200,0,0.3); border-color: gold; }
-
-  /* Settings panel */
-  #settings-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-  }
-
-  #settings-overlay.open { display: flex; }
-
-  #settings-box {
-    background: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 12px;
-    padding: 28px;
-    width: min(480px, 95vw);
-    max-height: 90vh;
-    overflow-y: auto;
-  }
-
-  #settings-box h2 { margin-bottom: 20px; font-size: 20px; }
-
-  .field { margin-bottom: 16px; }
-  .field label { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
-  .field input, .field select {
-    width: 100%;
-    background: #2a2a2a;
-    border: 1px solid #444;
-    color: #fff;
-    padding: 9px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-family: monospace;
-  }
-
-  .field input:focus, .field select:focus {
-    outline: none;
-    border-color: #888;
-  }
-
-  .hint {
-    font-size: 12px;
-    color: #666;
-    margin-top: 5px;
-    line-height: 1.5;
-  }
-
-  .hint a { color: #888; }
-
-  .btn-row { display: flex; gap: 10px; margin-top: 24px; }
-  .btn-primary {
-    background: #1a73e8;
-    border: none;
-    flex: 1;
-    padding: 10px;
-    font-size: 15px;
-  }
-  .btn-primary:hover { background: #1558b0; }
-  .btn-secondary { background: #333; border: 1px solid #555; }
 
   #status {
     position: fixed;
-    top: 12px;
-    left: 50%;
+    top: 12px; left: 50%;
     transform: translateX(-50%);
     background: rgba(0,0,0,0.8);
     border: 1px solid #444;
@@ -148,38 +80,156 @@
     font-size: 14px;
     pointer-events: none;
     transition: opacity 0.4s;
+    white-space: nowrap;
   }
-
   #status.hidden { opacity: 0; }
 
-  /* Setup prompt */
-  #setup-prompt {
+  /* ── Password screen ── */
+  #password-screen {
     position: fixed;
     inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 24px;
+    padding: 40px 20px;
     text-align: center;
+  }
+
+  #password-screen h1 {
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+
+  #password-input {
+    font-size: 28px;
+    padding: 16px 24px;
+    border-radius: 14px;
+    border: 2px solid #444;
+    background: #111;
+    color: #fff;
+    width: min(340px, 90vw);
+    text-align: center;
+    letter-spacing: 4px;
+    outline: none;
+    -webkit-text-security: disc;
+  }
+
+  #password-input:focus { border-color: #888; }
+
+  #password-error {
+    color: #e55;
+    font-size: 16px;
+    min-height: 22px;
+  }
+
+  #unlock-btn {
+    font-size: 20px;
+    padding: 14px 48px;
+    border-radius: 12px;
+    background: #1a73e8;
+    border: none;
+  }
+  #unlock-btn:hover { background: #1558b0; }
+
+  /* ── Setup screen ── */
+  #setup-screen {
+    position: fixed;
+    inset: 0;
+    overflow-y: auto;
+    padding: 32px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  #setup-box {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 14px;
+    padding: 28px;
+    width: min(520px, 100%);
+  }
+
+  #setup-box h2 { font-size: 22px; margin-bottom: 6px; }
+  #setup-box .subtitle { color: #777; font-size: 14px; margin-bottom: 24px; }
+
+  .field { margin-bottom: 18px; }
+  .field label { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
+  .field input {
+    width: 100%;
+    background: #1a1a1a;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 10px 13px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: monospace;
+  }
+  .field input:focus { outline: none; border-color: #888; }
+  .hint { font-size: 12px; color: #555; margin-top: 5px; line-height: 1.5; }
+  .hint a { color: #777; }
+
+  .divider { border: none; border-top: 1px solid #2a2a2a; margin: 24px 0; }
+
+  .btn-row { display: flex; gap: 10px; margin-top: 8px; }
+  .btn-primary { background: #1a73e8; border: none; flex: 1; padding: 11px; font-size: 15px; border-radius: 8px; }
+  .btn-primary:hover { background: #1558b0; }
+
+  #encrypted-output {
+    display: none;
+    margin-top: 28px;
+    background: #0a0a0a;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
     padding: 20px;
   }
 
-  #setup-prompt h1 { font-size: 28px; }
-  #setup-prompt p { color: #888; max-width: 400px; line-height: 1.6; }
-  #setup-prompt button { font-size: 16px; padding: 12px 28px; }
+  #encrypted-output h3 { font-size: 16px; margin-bottom: 12px; color: #8f8; }
+
+  #blob-text {
+    width: 100%;
+    background: #111;
+    border: 1px solid #333;
+    color: #aaa;
+    font-family: monospace;
+    font-size: 11px;
+    padding: 10px;
+    border-radius: 6px;
+    resize: none;
+    height: 90px;
+    word-break: break-all;
+  }
+
+  .instructions {
+    margin-top: 16px;
+    font-size: 13px;
+    color: #888;
+    line-height: 1.8;
+    counter-reset: step;
+  }
+
+  .instructions li { margin-left: 18px; margin-bottom: 4px; }
+
+  #copy-btn { margin-top: 12px; width: 100%; background: #333; border: 1px solid #555; padding: 10px; border-radius: 8px; font-size: 14px; }
 </style>
 </head>
 <body>
 
-<!-- Setup prompt shown before credentials are entered -->
-<div id="setup-prompt">
-  <h1>Flickr Viewer</h1>
-  <p>To get started, you'll need a Flickr API key and OAuth tokens. Click below to enter your credentials.</p>
-  <button onclick="openSettings()">Configure Credentials</button>
+<!-- ══ Password screen ══════════════════════════════════════════════════════ -->
+<div id="password-screen" style="display:none">
+  <h1>Family Photos</h1>
+  <input id="password-input" type="password" placeholder="password"
+         autocomplete="current-password" autocorrect="off" autocapitalize="none"
+         onkeydown="if(event.key==='Enter') unlock()">
+  <div id="password-error"></div>
+  <button id="unlock-btn" onclick="unlock()">Open</button>
 </div>
 
-<!-- Main slideshow (hidden until configured) -->
+<!-- ══ Slideshow ════════════════════════════════════════════════════════════ -->
 <div id="slideshow" style="display:none">
   <img id="photo" src="" alt="">
   <div id="info">
@@ -188,321 +238,359 @@
   </div>
 </div>
 
-<!-- Controls -->
 <div id="controls" style="display:none">
   <button onclick="prevPhoto()">&#8592;</button>
   <button id="play-btn" onclick="togglePlay()" class="active">&#9646;&#9646;</button>
   <button onclick="nextPhoto()">&#8594;</button>
-  <button onclick="openSettings()">&#9881;</button>
+  <button onclick="openSpeed()">&#9881;</button>
+</div>
+
+<!-- Speed overlay (interval only, no credentials) -->
+<div id="speed-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:50; align-items:center; justify-content:center;">
+  <div style="background:#1a1a1a; border:1px solid #333; border-radius:14px; padding:28px; width:min(320px,90vw); text-align:center;">
+    <div style="font-size:16px; margin-bottom:20px;">Slideshow Speed</div>
+    <div style="font-size:36px; font-weight:300; margin-bottom:8px;" id="interval-display">8s</div>
+    <input type="range" id="interval-slider" min="2" max="60" value="8" step="1"
+           oninput="updateInterval(this.value)"
+           style="width:100%; accent-color:#1a73e8; margin-bottom:24px;">
+    <div style="display:flex; gap:10px;">
+      <button style="flex:1; background:#1a73e8; border:none; padding:11px; border-radius:8px; font-size:15px;" onclick="closeSpeed()">Done</button>
+    </div>
+  </div>
 </div>
 
 <div id="status" class="hidden"></div>
 
-<!-- Settings overlay -->
-<div id="settings-overlay">
-  <div id="settings-box">
-    <h2>Flickr Credentials</h2>
+<!-- ══ Setup screen (developer only, ?setup) ════════════════════════════════ -->
+<div id="setup-screen" style="display:none">
+  <div id="setup-box">
+    <h2>Flickr Viewer — Setup</h2>
+    <p class="subtitle">Enter your Flickr credentials and choose a password for your viewer. This page is only for you — your mom will only see a password box.</p>
 
     <div class="field">
       <label>API Key</label>
-      <input type="text" id="api-key" placeholder="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx">
-      <div class="hint">
-        Register a free app at <a href="https://www.flickr.com/services/apps/create/" target="_blank">flickr.com/services/apps/create</a> to get your API key and secret.
-      </div>
+      <input type="text" id="s-api-key" placeholder="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx">
+      <div class="hint">From <a href="https://www.flickr.com/services/apps/create/" target="_blank">flickr.com/services/apps/create</a></div>
     </div>
 
     <div class="field">
       <label>API Secret</label>
-      <input type="password" id="api-secret" placeholder="xxxxxxxxxxxxxxxx">
+      <input type="password" id="s-api-secret" placeholder="xxxxxxxxxxxxxxxx">
     </div>
 
     <div class="field">
       <label>OAuth Token</label>
-      <input type="text" id="oauth-token" placeholder="xxxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxx">
-      <div class="hint">
-        Get your OAuth token using the <a href="https://www.flickr.com/services/api/explore/flickr.test.login" target="_blank">Flickr API Explorer</a>:<br>
-        1. Visit the link above while logged in to Flickr<br>
-        2. Click "Sign In" then "Call Method"<br>
-        3. Copy the <code style="color:#aaa">oauth_token</code> from the response URL shown in your browser's address bar after authorization, or use the token tool below.
-      </div>
+      <input type="text" id="s-oauth-token" placeholder="xxxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxx">
+      <div class="hint">Run <code style="color:#aaa">python3 get_token.py</code> to get this</div>
     </div>
 
     <div class="field">
       <label>OAuth Token Secret</label>
-      <input type="password" id="oauth-token-secret" placeholder="xxxxxxxxxxxxxxxx">
+      <input type="password" id="s-oauth-token-secret" placeholder="xxxxxxxxxxxxxxxx">
     </div>
 
     <div class="field">
-      <label>User NSID (your Flickr user ID)</label>
-      <input type="text" id="user-nsid" placeholder="12345678@N00">
-      <div class="hint">
-        Find yours at <a href="https://www.flickr.com/services/api/explore/flickr.test.login" target="_blank">flickr.com/services/api/explore/flickr.test.login</a> — it appears in the response as <code style="color:#aaa">user_nsid</code>.
-      </div>
+      <label>User NSID</label>
+      <input type="text" id="s-user-nsid" placeholder="12345678@N00">
+      <div class="hint">Printed by get_token.py, or find it at <a href="https://www.flickr.com/services/api/explore/flickr.test.login" target="_blank">flickr API explorer</a></div>
     </div>
 
     <div class="field">
       <label>Interval between photos (seconds)</label>
-      <input type="number" id="interval" value="8" min="2" max="120">
+      <input type="number" id="s-interval" value="8" min="2" max="120">
+    </div>
+
+    <hr class="divider">
+
+    <div class="field">
+      <label>Password for the viewer</label>
+      <input type="password" id="s-password" placeholder="Choose a simple password your mom can remember">
     </div>
 
     <div class="btn-row">
-      <button class="btn-primary" onclick="saveSettings()">Save &amp; Start</button>
-      <button class="btn-secondary" onclick="closeSettings()">Cancel</button>
+      <button class="btn-primary" onclick="generateBlob()">Encrypt &amp; Generate Config</button>
+    </div>
+
+    <div id="encrypted-output">
+      <h3>Done — follow these steps:</h3>
+      <textarea id="blob-text" readonly></textarea>
+      <button id="copy-btn" onclick="copyBlob()">Copy to clipboard</button>
+      <ol class="instructions">
+        <li>Copy the text above</li>
+        <li>Open <code style="color:#aaa">index.html</code> in a text editor</li>
+        <li>Find the line: <code style="color:#aaa">const ENCRYPTED_CONFIG = '';</code></li>
+        <li>Replace the empty string <code style="color:#aaa">''</code> with the copied text (keep the quotes)</li>
+        <li>Save, commit, and push to GitHub</li>
+        <li>Done — the page will now show a password box</li>
+      </ol>
     </div>
   </div>
 </div>
 
 <script>
-// ── State ──────────────────────────────────────────────────────────────────
-let photos = [];
-let currentIndex = 0;
-let playing = true;
-let timer = null;
-let cfg = {};
+// ════════════════════════════════════════════════════════════════════════════
+// SET THIS after running the setup page (?setup).
+// Leave empty ('') to show the setup screen.
+// ════════════════════════════════════════════════════════════════════════════
+const ENCRYPTED_CONFIG = '';
 
-// ── Persist settings in localStorage ──────────────────────────────────────
-function loadConfig() {
-  const raw = localStorage.getItem('flickr-viewer-cfg');
-  return raw ? JSON.parse(raw) : null;
+// ── Crypto helpers ───────────────────────────────────────────────────────────
+async function deriveKey(password, salt) {
+  const enc = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey(
+    'raw', enc.encode(password), { name: 'PBKDF2' }, false, ['deriveKey']
+  );
+  return crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt, iterations: 200000, hash: 'SHA-256' },
+    keyMaterial,
+    { name: 'AES-GCM', length: 256 },
+    false,
+    ['encrypt', 'decrypt']
+  );
 }
 
-function saveConfig(c) {
-  localStorage.setItem('flickr-viewer-cfg', JSON.stringify(c));
+async function encryptConfig(config, password) {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv   = crypto.getRandomValues(new Uint8Array(12));
+  const key  = await deriveKey(password, salt);
+  const enc  = new TextEncoder();
+  const ct   = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(JSON.stringify(config)));
+  const out  = new Uint8Array(16 + 12 + ct.byteLength);
+  out.set(salt, 0);
+  out.set(iv, 16);
+  out.set(new Uint8Array(ct), 28);
+  return btoa(String.fromCharCode(...out));
 }
 
-// ── Flickr OAuth 1.0a signing ──────────────────────────────────────────────
-// Flickr requires signed requests for private photo access.
+async function decryptConfig(blob, password) {
+  try {
+    const bytes = Uint8Array.from(atob(blob), c => c.charCodeAt(0));
+    const salt  = bytes.slice(0, 16);
+    const iv    = bytes.slice(16, 28);
+    const ct    = bytes.slice(28);
+    const key   = await deriveKey(password, salt);
+    const pt    = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct);
+    return JSON.parse(new TextDecoder().decode(pt));
+  } catch {
+    return null; // wrong password or corrupted
+  }
+}
 
+// ── State ────────────────────────────────────────────────────────────────────
+let photos = [], currentIndex = 0, playing = true, timer = null, cfg = {};
+
+// ── Flickr OAuth 1.0a signing ────────────────────────────────────────────────
 function percentEncode(str) {
   return encodeURIComponent(String(str))
-    .replace(/!/g, '%21').replace(/'/g, '%27')
-    .replace(/\(/g, '%28').replace(/\)/g, '%29')
-    .replace(/\*/g, '%2A');
+    .replace(/!/g,'%21').replace(/'/g,'%27')
+    .replace(/\(/g,'%28').replace(/\)/g,'%29').replace(/\*/g,'%2A');
 }
 
 async function hmacSha1(key, message) {
   const enc = new TextEncoder();
-  const cryptoKey = await crypto.subtle.importKey(
-    'raw', enc.encode(key), { name: 'HMAC', hash: 'SHA-1' }, false, ['sign']
-  );
-  const sig = await crypto.subtle.sign('HMAC', cryptoKey, enc.encode(message));
+  const k   = await crypto.subtle.importKey('raw', enc.encode(key), { name:'HMAC', hash:'SHA-1' }, false, ['sign']);
+  const sig = await crypto.subtle.sign('HMAC', k, enc.encode(message));
   return btoa(String.fromCharCode(...new Uint8Array(sig)));
 }
 
 async function signedFlickrUrl(method, extraParams) {
   const baseUrl = 'https://www.flickr.com/services/rest/';
-  const nonce = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
-  const timestamp = Math.floor(Date.now() / 1000).toString();
-
-  const params = {
-    oauth_consumer_key: cfg.apiKey,
-    oauth_nonce: nonce,
+  const nonce   = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+  const params  = {
+    oauth_consumer_key:     cfg.apiKey,
+    oauth_nonce:            nonce,
     oauth_signature_method: 'HMAC-SHA1',
-    oauth_timestamp: timestamp,
-    oauth_token: cfg.oauthToken,
-    oauth_version: '1.0',
-    method,
-    format: 'json',
-    nojsoncallback: '1',
+    oauth_timestamp:        String(Math.floor(Date.now() / 1000)),
+    oauth_token:            cfg.oauthToken,
+    oauth_version:          '1.0',
+    method, format: 'json', nojsoncallback: '1',
     ...extraParams
   };
-
-  // Sort params alphabetically for base string
-  const sortedKeys = Object.keys(params).sort();
-  const paramString = sortedKeys
-    .map(k => `${percentEncode(k)}=${percentEncode(params[k])}`)
-    .join('&');
-
-  const baseString = [
-    'GET',
-    percentEncode(baseUrl),
-    percentEncode(paramString)
-  ].join('&');
-
-  const signingKey = `${percentEncode(cfg.apiSecret)}&${percentEncode(cfg.oauthTokenSecret)}`;
-  const signature = await hmacSha1(signingKey, baseString);
-  params.oauth_signature = signature;
-
-  const qs = Object.keys(params).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`).join('&');
-  return `${baseUrl}?${qs}`;
+  const paramStr = Object.keys(params).sort()
+    .map(k => `${percentEncode(k)}=${percentEncode(params[k])}`).join('&');
+  const base = `GET&${percentEncode(baseUrl)}&${percentEncode(paramStr)}`;
+  const sigKey = `${percentEncode(cfg.apiSecret)}&${percentEncode(cfg.oauthTokenSecret)}`;
+  params.oauth_signature = await hmacSha1(sigKey, base);
+  return `${baseUrl}?${Object.keys(params).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`).join('&')}`;
 }
 
-// ── Fetch photos ───────────────────────────────────────────────────────────
+// ── Fetch photos ─────────────────────────────────────────────────────────────
 async function fetchPhotos() {
   showStatus('Loading photos…');
   try {
-    const perPage = 500;
-    const extraParams = {
-      user_id: cfg.userNsid,
-      per_page: perPage,
-      page: 1,
-      extras: 'url_l,url_o,url_h,title',
-      privacy_filter: '3'
-    };
-
-    const url = await signedFlickrUrl('flickr.people.getPhotos', extraParams);
-    const res = await fetch(url);
-    const data = await res.json();
-
-    if (data.stat !== 'ok') {
-      showStatus('Flickr error: ' + data.message, true);
-      return;
-    }
-
-    const rawPhotos = data.photos.photo;
-    // Shuffle
-    photos = rawPhotos
-      .map(p => ({
-        url: p.url_l || p.url_h || p.url_o,
-        title: p.title,
-        id: p.id
-      }))
+    const url  = await signedFlickrUrl('flickr.people.getPhotos', {
+      user_id: cfg.userNsid, per_page: 500, page: 1,
+      extras: 'url_l,url_o,url_h,title', privacy_filter: '3'
+    });
+    const data = await (await fetch(url)).json();
+    if (data.stat !== 'ok') { showStatus('Flickr error: ' + data.message, true); return; }
+    photos = data.photos.photo
+      .map(p => ({ url: p.url_l || p.url_h || p.url_o, title: p.title }))
       .filter(p => p.url)
       .sort(() => Math.random() - 0.5);
-
-    if (photos.length === 0) {
-      showStatus('No photos found.', true);
-      return;
-    }
-
+    if (!photos.length) { showStatus('No photos found.', true); return; }
     currentIndex = 0;
     showStatus(`Loaded ${photos.length} photos`);
-    showPhoto(currentIndex);
+    showPhoto(0);
     if (playing) startTimer();
-  } catch (e) {
-    showStatus('Error: ' + e.message, true);
-    console.error(e);
-  }
+  } catch(e) { showStatus('Error: ' + e.message, true); }
 }
 
-// ── Display ────────────────────────────────────────────────────────────────
+// ── Display ──────────────────────────────────────────────────────────────────
 function showPhoto(index) {
-  const p = photos[index];
-  if (!p) return;
+  const p = photos[index]; if (!p) return;
   const img = document.getElementById('photo');
   img.classList.add('fade');
   setTimeout(() => {
     img.src = p.url;
-    img.onload = () => img.classList.remove('fade');
-    img.onerror = () => { nextPhoto(); };
-    document.getElementById('photo-title').textContent = p.title || '';
+    img.onload  = () => img.classList.remove('fade');
+    img.onerror = () => nextPhoto();
+    document.getElementById('photo-title').textContent   = p.title || '';
     document.getElementById('photo-counter').textContent = `${index + 1} / ${photos.length}`;
   }, 300);
 }
 
-function nextPhoto() {
-  currentIndex = (currentIndex + 1) % photos.length;
-  showPhoto(currentIndex);
-}
-
-function prevPhoto() {
-  currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-  showPhoto(currentIndex);
-  if (playing) { clearTimeout(timer); startTimer(); }
-}
+function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(currentIndex); }
+function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(currentIndex); resetTimer(); }
 
 function startTimer() {
   clearTimeout(timer);
   timer = setTimeout(() => { nextPhoto(); startTimer(); }, (cfg.interval || 8) * 1000);
 }
+function resetTimer() { if (playing) { clearTimeout(timer); startTimer(); } }
 
 function togglePlay() {
   playing = !playing;
   const btn = document.getElementById('play-btn');
-  if (playing) {
-    btn.innerHTML = '&#9646;&#9646;';
-    btn.classList.add('active');
-    startTimer();
-  } else {
-    btn.innerHTML = '&#9654;';
-    btn.classList.remove('active');
-    clearTimeout(timer);
-  }
+  if (playing) { btn.innerHTML = '&#9646;&#9646;'; btn.classList.add('active'); startTimer(); }
+  else         { btn.innerHTML = '&#9654;'; btn.classList.remove('active'); clearTimeout(timer); }
 }
 
-// ── Status toast ───────────────────────────────────────────────────────────
+// ── Status toast ─────────────────────────────────────────────────────────────
 let statusTimer;
 function showStatus(msg, persist = false) {
   const el = document.getElementById('status');
-  el.textContent = msg;
-  el.classList.remove('hidden');
+  el.textContent = msg; el.classList.remove('hidden');
   clearTimeout(statusTimer);
   if (!persist) statusTimer = setTimeout(() => el.classList.add('hidden'), 3000);
 }
 
-// ── Settings UI ────────────────────────────────────────────────────────────
-function openSettings() {
-  const s = document.getElementById('settings-overlay');
-  s.classList.add('open');
-  // Populate fields from saved config
-  const c = loadConfig() || {};
-  document.getElementById('api-key').value = c.apiKey || '';
-  document.getElementById('api-secret').value = c.apiSecret || '';
-  document.getElementById('oauth-token').value = c.oauthToken || '';
-  document.getElementById('oauth-token-secret').value = c.oauthTokenSecret || '';
-  document.getElementById('user-nsid').value = c.userNsid || '';
-  document.getElementById('interval').value = c.interval || 8;
-}
-
-function closeSettings() {
-  document.getElementById('settings-overlay').classList.remove('open');
-}
-
-function saveSettings() {
-  cfg = {
-    apiKey: document.getElementById('api-key').value.trim(),
-    apiSecret: document.getElementById('api-secret').value.trim(),
-    oauthToken: document.getElementById('oauth-token').value.trim(),
-    oauthTokenSecret: document.getElementById('oauth-token-secret').value.trim(),
-    userNsid: document.getElementById('user-nsid').value.trim(),
-    interval: parseInt(document.getElementById('interval').value, 10) || 8,
-  };
-
-  if (!cfg.apiKey || !cfg.apiSecret || !cfg.oauthToken || !cfg.oauthTokenSecret || !cfg.userNsid) {
-    showStatus('Please fill in all credential fields.', true);
-    return;
-  }
-
-  saveConfig(cfg);
-  closeSettings();
-  document.getElementById('setup-prompt').style.display = 'none';
-  document.getElementById('slideshow').style.display = 'flex';
-  document.getElementById('controls').style.display = 'flex';
+// ── Start slideshow ───────────────────────────────────────────────────────────
+function startSlideshow(config) {
+  cfg = config;
+  document.getElementById('password-screen').style.display = 'none';
+  document.getElementById('slideshow').style.display       = 'flex';
+  document.getElementById('controls').style.display        = 'flex';
   fetchPhotos();
 }
 
-// ── Keyboard shortcuts ─────────────────────────────────────────────────────
+// ── Password unlock ───────────────────────────────────────────────────────────
+async function unlock() {
+  const pw  = document.getElementById('password-input').value;
+  const err = document.getElementById('password-error');
+  err.textContent = '';
+  if (!pw) return;
+  document.getElementById('unlock-btn').textContent = '…';
+  const config = await decryptConfig(ENCRYPTED_CONFIG, pw);
+  if (!config) {
+    err.textContent = 'Wrong password — try again';
+    document.getElementById('unlock-btn').textContent = 'Open';
+    document.getElementById('password-input').value = '';
+    document.getElementById('password-input').focus();
+    return;
+  }
+  sessionStorage.setItem('flickr-cfg', JSON.stringify(config));
+  startSlideshow(config);
+}
+
+// ── Setup page ────────────────────────────────────────────────────────────────
+async function generateBlob() {
+  const fields = {
+    apiKey:           document.getElementById('s-api-key').value.trim(),
+    apiSecret:        document.getElementById('s-api-secret').value.trim(),
+    oauthToken:       document.getElementById('s-oauth-token').value.trim(),
+    oauthTokenSecret: document.getElementById('s-oauth-token-secret').value.trim(),
+    userNsid:         document.getElementById('s-user-nsid').value.trim(),
+    interval:         parseInt(document.getElementById('s-interval').value, 10) || 8,
+  };
+  const pw = document.getElementById('s-password').value;
+  if (Object.values(fields).some(v => !v) || !pw) {
+    alert('Please fill in all fields including the password.'); return;
+  }
+  const blob = await encryptConfig(fields, pw);
+  document.getElementById('blob-text').value = blob;
+  document.getElementById('encrypted-output').style.display = 'block';
+  document.getElementById('encrypted-output').scrollIntoView({ behavior: 'smooth' });
+}
+
+function copyBlob() {
+  const ta = document.getElementById('blob-text');
+  ta.select();
+  document.execCommand('copy');
+  document.getElementById('copy-btn').textContent = 'Copied!';
+  setTimeout(() => document.getElementById('copy-btn').textContent = 'Copy to clipboard', 2000);
+}
+
+// ── Speed overlay ─────────────────────────────────────────────────────────────
+function openSpeed() {
+  const ov = document.getElementById('speed-overlay');
+  document.getElementById('interval-slider').value = cfg.interval || 8;
+  document.getElementById('interval-display').textContent = `${cfg.interval || 8}s`;
+  ov.style.display = 'flex';
+}
+function closeSpeed() { document.getElementById('speed-overlay').style.display = 'none'; }
+function updateInterval(val) {
+  cfg.interval = parseInt(val, 10);
+  document.getElementById('interval-display').textContent = `${val}s`;
+  resetTimer();
+  // Persist in session so it survives a refresh
+  const cached = sessionStorage.getItem('flickr-cfg');
+  if (cached) { const c = JSON.parse(cached); c.interval = cfg.interval; sessionStorage.setItem('flickr-cfg', JSON.stringify(c)); }
+}
+
+// ── Keyboard shortcuts ────────────────────────────────────────────────────────
 document.addEventListener('keydown', e => {
-  if (document.getElementById('settings-overlay').classList.contains('open')) return;
-  if (e.key === 'ArrowRight' || e.key === ' ') { nextPhoto(); if (playing) { clearTimeout(timer); startTimer(); } }
-  if (e.key === 'ArrowLeft') prevPhoto();
+  if (document.getElementById('slideshow').style.display === 'none') return;
+  if (e.key === 'Escape') { closeSpeed(); return; }
+  if (document.getElementById('speed-overlay').style.display !== 'none') return;
+  if (e.key === 'ArrowRight' || e.key === ' ') { nextPhoto(); resetTimer(); }
+  if (e.key === 'ArrowLeft')  prevPhoto();
   if (e.key === 'p' || e.key === 'P') togglePlay();
-  if (e.key === 's' || e.key === 'S') openSettings();
-  if (e.key === 'Escape') closeSettings();
 });
 
-// ── Touch/swipe for iPad ───────────────────────────────────────────────────
+// ── Swipe for iPad ────────────────────────────────────────────────────────────
 let touchStartX = 0;
 document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-document.addEventListener('touchend', e => {
+document.addEventListener('touchend',   e => {
   const dx = e.changedTouches[0].clientX - touchStartX;
-  if (Math.abs(dx) > 50) {
-    if (dx < 0) nextPhoto();
-    else prevPhoto();
-    if (playing) { clearTimeout(timer); startTimer(); }
+  if (Math.abs(dx) > 50 && document.getElementById('slideshow').style.display !== 'none') {
+    dx < 0 ? nextPhoto() : prevPhoto();
+    resetTimer();
   }
 }, { passive: true });
 
-// ── Init ───────────────────────────────────────────────────────────────────
+// ── Init ──────────────────────────────────────────────────────────────────────
 (function init() {
-  const c = loadConfig();
-  if (c && c.apiKey && c.oauthToken) {
-    cfg = c;
-    document.getElementById('setup-prompt').style.display = 'none';
-    document.getElementById('slideshow').style.display = 'flex';
-    document.getElementById('controls').style.display = 'flex';
-    fetchPhotos();
+  const isSetup = new URLSearchParams(location.search).has('setup');
+
+  if (isSetup) {
+    document.getElementById('setup-screen').style.display = 'block';
+    return;
   }
+
+  if (!ENCRYPTED_CONFIG) {
+    // No config yet — redirect to setup
+    document.getElementById('setup-screen').style.display = 'block';
+    return;
+  }
+
+  // Check if already unlocked this session
+  const cached = sessionStorage.getItem('flickr-cfg');
+  if (cached) { startSlideshow(JSON.parse(cached)); return; }
+
+  // Show password prompt
+  document.getElementById('password-screen').style.display = 'flex';
+  setTimeout(() => document.getElementById('password-input').focus(), 100);
 })();
 </script>
 </body>
